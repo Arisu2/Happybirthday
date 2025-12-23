@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #000; /* Хар background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.2);
+    padding: 20px 40px;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+  }
+
+  .card img.birthday {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    animation: floatText 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes floatText {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+  }
+
+  .text p {
+    color: #fff;
+    line-height: 1.5em;
+    white-space: pre-line; /* Шинэ мөрийг хадгална */
+  }
+
+  .muted {
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  .floatItem {
+    position: absolute;
+    bottom: -100px;
+    width: 50px;
+    height: 50px;
+    animation: rise linear infinite;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) rotate(0deg);}
+    100% { transform: translateY(-110vh) rotate(360deg);}
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <img src="https://github.com/DzarelDeveloper/Img/blob/main/ulangtahun.jpg?raw=true" 
+       alt="birthday" class="birthday">
+  <div class="text">
+    <h1>Төрсөн өдрийн мэнд!</h1>
+    <p>
+Мөнгөнхуяг таньд Таны төрсөн өдөр тохиож байгаатай холбогдуулан чин сэтгэлээсээ мэндчилж байна. Таны тэвчээр, урам зориг, мэдлэг тань үргэлж урам өгч, амьдралд тууштай, зоригтой байхыг зааж өгдөгт баярлаж байна. Өнөөдөр таны өдөр аз жаргал, эрүүл энх, амжилт бүтээлээр дүүрэн байг. Таны зааж сургасан бүх зүйл миний амьдралд үргэлж гэрэл, урам зориг болж байдаг. Өөрөөс тань маш их зүйлсийг сурч байгаадаа үнэхээр их талархаж байна. Ирэх жилүүдэд таны ажил, амьдралд шинэ амжилт, аз жаргалаар дүүрэн байхыг хүсье. Та үргэлж эрч хүчтэй, сэтгэл хангалуун, аз жаргалтай байгаарай. Төрсөн өдрийн мэнд хүргэе!
+    </p>
+    <p class="muted">Хүндэтгэсэн Эрхэм-Итгэл</p>
+  </div>
+</div>
+
+<!-- YouTube дуу автоматаар тоглуулах iframe -->
+<div id="player"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '0',
+    width: '0',
+    videoId: 'AgBUkdW2rwQ',
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: 'AgBUkdW2rwQ'
+    },
+    events: {
+      onReady: (event) => event.target.playVideo()
+    }
+  });
+}
+</script>
+
+<script>
+const items = ['🍰','🎈','🧁','🍩','🎂'];
+
+// 20 ширхэг элемент үүсгэх
+for(let i=0;i<20;i++){
+  const div = document.createElement('div');
+  div.className = 'floatItem';
+  div.style.left = Math.random()*100 + 'vw';
+  div.style.animationDuration = (5 + Math.random()*5) + 's';
+  div.style.fontSize = (30 + Math.random()*20) + 'px';
+  div.textContent = items[Math.floor(Math.random()*items.length)];
+  document.body.appendChild(div);
+}
+</script>
+</body>
+</html>
